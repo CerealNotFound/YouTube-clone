@@ -17,5 +17,6 @@ const menuWrapper = document.querySelector("#menu-wrapper");
 recommendedCategories.map((category) => {
   const menuCategory = document.createElement("div");
   menuCategory.innerText = category;
+  menuCategory.classList.add("menu-category");
   menuWrapper.appendChild(menuCategory);
 });
