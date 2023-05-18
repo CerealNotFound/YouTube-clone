@@ -4,7 +4,7 @@ const recommendedCategories = [
   "Music",
   "Live",
   "Comedy",
-  "Mix",
+  "Mixes",
   "Podcast",
   "Motivation",
   "Biology",
