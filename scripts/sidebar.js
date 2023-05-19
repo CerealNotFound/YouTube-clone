@@ -214,6 +214,13 @@ playlists.map((field) => {
 
 const subscriptionsWrapper = document.createElement("div");
 subscriptionsWrapper.classList.add("aside-link-wrapper");
+
+const subscriptionTitle = document.createElement("p");
+subscriptionTitle.setAttribute("id", "subscription-title");
+subscriptionTitle.innerText = "Subscriptions";
+subscriptionTitle.style = "color: #fff;";
+subscriptionsWrapper.appendChild(subscriptionTitle);
+
 subscriptions.map((field) => {
   const subscription = document.createElement("div");
   subscription.classList.add("aside-link");

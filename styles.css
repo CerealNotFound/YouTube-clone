@@ -8,6 +8,7 @@
   --search-bar-color: hsla(0, 100%, 100%, 0.88);
   --search-bar-icon-background: hsla(0, 100%, 100%, 0.08);
   --menu-item-background: rgba(255, 255, 255, 0.1);
+  --menu-hover-background: hsla(0, 100%, 100%, 0.15);
   --mic-background: #181818;
 }
 
@@ -18,6 +19,10 @@
 
 body {
   background-color: var(--nav-background);
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 main {
@@ -71,6 +76,11 @@ sup {
   margin-left: 1rem;
   border-radius: 50%;
   background-color: var(--mic-background);
+}
+
+#mic:hover {
+  cursor: pointer;
+  background-color: var(--menu-hover-background);
 }
 
 #search-wrapper {
@@ -137,8 +147,15 @@ sup {
 }
 
 #right-icons-wrapper div {
-  margin: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.2rem;
   border-radius: 50%;
+}
+
+#notifications:hover,
+#create-icon:hover {
+  background-color: var(--menu-hover-background);
+  cursor: pointer;
 }
 
 #user-avatar {
@@ -172,6 +189,11 @@ section {
   background-color: var(--menu-item-background);
 }
 
+.menu-category:hover {
+  cursor: pointer;
+  background-color: var(--menu-hover-background);
+}
+
 #aside-wrapper {
   overflow-y: auto;
   width: 15vw;
@@ -181,6 +203,16 @@ section {
   background-color: var(--nav-background);
 }
 
+.aside-link:hover {
+  cursor: pointer;
+  background-color: var(--menu-item-background);
+}
+
+#subscription-title {
+  margin: 1rem;
+  font-size: 1rem;
+}
+
 #aside-wrapper::-webkit-scrollbar {
   display: none;
 }
@@ -188,9 +220,11 @@ section {
 .aside-link-wrapper .aside-link {
   display: flex;
   align-items: center;
-  margin: 1rem;
+  padding: 0.5rem;
+  margin: 0.7rem;
   color: #fff;
   width: 100%;
+  border-radius: 5%/25%;
 }
 
 .aside-link-wrapper {
