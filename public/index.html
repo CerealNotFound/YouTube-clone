@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="../src/styles/styles.css" />
     <title>Document</title>
   </head>
   <body>
@@ -177,18 +177,19 @@
       </nav>
     </header>
     <main>
-      <div id="menu-aside-wrapper">
+      <div id="sidebar" class="sidebar-default-state">
         <aside id="aside-wrapper"></aside>
-        <menu id="menu-wrapper"></menu>
+        <aside id="default-aside"></aside>
       </div>
       <section>
-        <h2>Home page</h2>
+        <menu id="menu-wrapper"></menu>
         <div id="videos"></div>
       </section>
     </main>
-    <script src="./scripts/header.js"></script>
-    <script src="./scripts/menu.js"></script>
-    <script src="./scripts/sidebar.js"></script>
-    <script src="./scripts/videos.js"></script>
+    <script src="../src/components/header.js"></script>
+    <script src="../src/components/menu.js"></script>
+    <script src="../src/components/sidebar.js"></script>
+    <script src="../src/components/videos.js" type="module"></script>
+    <!-- <script src="../src/scripts/htmlComponent.js" type="module"></script> -->
   </body>
 </html>
