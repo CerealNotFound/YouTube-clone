@@ -1,3 +1,9 @@
+import {
+  htmlComponent,
+  appendElements,
+  divComponent,
+} from "../scripts/htmlComponents.js";
+
 const recommendedCategories = [
   "All",
   "Gaming",
@@ -15,8 +21,7 @@ const recommendedCategories = [
 const menuWrapper = document.querySelector("#menu-wrapper");
 
 recommendedCategories.map((category) => {
-  const menuCategory = document.createElement("div");
-  menuCategory.innerText = category;
-  menuCategory.classList.add("menu-category");
-  menuWrapper.appendChild(menuCategory);
+  const menuCategory = htmlComponent([divComponent("menu-category", category)]);
+
+  appendElements([menuCategory], menuWrapper);
 });

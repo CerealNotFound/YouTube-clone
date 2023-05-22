@@ -18,6 +18,14 @@ export const htmlComponent = (elements) => {
       });
       htmlComponent.push(component);
     } else {
+      component = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        element.typeOfElement
+      );
+      element.attributes.map((htmlAttribute) => {
+        component.setAttribute(htmlAttribute.attribute, htmlAttribute.value);
+      });
+      htmlComponent.push(component);
     }
   });
   return htmlComponent;

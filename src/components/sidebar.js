@@ -1,3 +1,9 @@
+import {
+  htmlComponent,
+  appendElements,
+  divComponent,
+} from "../scripts/htmlComponents.js";
+
 const navigationFields = [
   {
     navigationField: "Home",
@@ -91,97 +97,173 @@ const subscriptions = [
 
 const asideWrapper = document.querySelector("#aside-wrapper");
 
-const navigationWrapper = document.createElement("div");
-navigationWrapper.classList.add("aside-link-wrapper");
+const asideWrapperContent = htmlComponent([
+  divComponent("aside-link-wrapper"),
+  divComponent("aside-link-wrapper"),
+  divComponent("aside-link-wrapper"),
+]);
+
+appendElements([asideWrapperContent], asideWrapper);
 
 navigationFields.map((field) => {
-  const navigationField = document.createElement("div");
-  navigationField.classList.add("aside-link");
+  const navigationField = htmlComponent([divComponent("aside-link")]);
 
-  const navigationFieldLogo = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "svg"
+  const navigationFieldLogo = htmlComponent([
+    {
+      typeOfElement: "svg",
+      attributes: [
+        {
+          attribute: "viewBox",
+          value: "0 0 24 24",
+        },
+        {
+          attribute: "width",
+          value: "24",
+        },
+        {
+          attribute: "height",
+          value: "24",
+        },
+        {
+          attribute: "class",
+          value: "aside-link-logo",
+        },
+      ],
+    },
+  ]);
+
+  const logoIcon = htmlComponent([
+    {
+      typeOfElement: "path",
+      attributes: [
+        {
+          attribute: "d",
+          value: field.logo,
+        },
+        {
+          attribute: "fill",
+          value: "#aaa",
+        },
+      ],
+    },
+  ]);
+
+  appendElements([logoIcon], navigationFieldLogo[0]);
+
+  const navigationFieldTitle = htmlComponent([
+    {
+      typeOfElement: "span",
+      attributes: [
+        {
+          attribute: "innerText",
+          value: field.navigationField,
+        },
+      ],
+    },
+  ]);
+
+  appendElements(
+    [navigationFieldLogo, navigationFieldTitle],
+    navigationField[0]
   );
-  navigationFieldLogo.setAttribute("viewBox", "0 0 24 24");
-  navigationFieldLogo.setAttribute("width", "24");
-  navigationFieldLogo.setAttribute("height", "24");
-  navigationFieldLogo.setAttribute("class", "aside-link-logo");
 
-  const logoIcon = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path"
-  );
-  logoIcon.setAttribute("fill", "#fff");
-
-  logoIcon.setAttribute("d", field.logo);
-  navigationFieldLogo.appendChild(logoIcon);
-  const navigationFieldTitle = document.createElement("span");
-  navigationFieldTitle.innerText = field.navigationField;
-
-  navigationField.appendChild(navigationFieldLogo);
-  navigationField.appendChild(navigationFieldTitle);
-
-  navigationWrapper.appendChild(navigationField);
-
-  asideWrapper.appendChild(navigationWrapper);
+  appendElements([navigationField], asideWrapperContent[0]);
 });
 
-const playlistWrapper = document.createElement("div");
-playlistWrapper.classList.add("aside-link-wrapper");
 playlists.map((field) => {
-  const playlist = document.createElement("div");
-  playlist.classList.add("aside-link");
+  const playlist = htmlComponent([divComponent("aside-link")]);
 
-  const playlistLogo = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "svg"
-  );
-  playlistLogo.setAttribute("viewBox", "0 0 24 24");
-  playlistLogo.setAttribute("width", "24");
-  playlistLogo.setAttribute("height", "24");
-  playlistLogo.setAttribute("class", "aside-link-logo");
+  const playlistLogo = htmlComponent([
+    {
+      typeOfElement: "svg",
+      attributes: [
+        {
+          attribute: "viewBox",
+          value: "0 0 24 24",
+        },
+        {
+          attribute: "width",
+          value: "24",
+        },
+        {
+          attribute: "height",
+          value: "24",
+        },
+        {
+          attribute: "class",
+          value: "aside-link-logo",
+        },
+      ],
+    },
+  ]);
 
-  const logoIcon = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path"
-  );
-  logoIcon.setAttribute("fill", "#fff");
-  logoIcon.setAttribute("d", field.logo);
-  playlistLogo.appendChild(logoIcon);
-  const playlistTitle = document.createElement("span");
-  playlistTitle.innerText = field.playlist;
+  const logoIcon = htmlComponent([
+    {
+      typeOfElement: "path",
+      attributes: [
+        {
+          attribute: "d",
+          value: field.logo,
+        },
+        {
+          attribute: "fill",
+          value: "#aaa",
+        },
+      ],
+    },
+  ]);
 
-  playlist.appendChild(playlistLogo);
-  playlist.appendChild(playlistTitle);
+  appendElements([logoIcon], playlistLogo[0]);
 
-  playlistWrapper.appendChild(playlist);
+  const playlistTitle = htmlComponent([
+    {
+      typeOfElement: "span",
+      attributes: [
+        {
+          attribute: "innerText",
+          value: field.playlist,
+        },
+      ],
+    },
+  ]);
 
-  asideWrapper.appendChild(playlistWrapper);
+  appendElements([playlistLogo, playlistTitle], playlist[0]);
+
+  appendElements([playlist], asideWrapperContent[1]);
 });
-
-const subscriptionsWrapper = document.createElement("div");
-subscriptionsWrapper.classList.add("aside-link-wrapper");
-
-const subscriptionTitle = document.createElement("p");
-subscriptionTitle.setAttribute("id", "subscription-title");
-subscriptionTitle.innerText = "Subscriptions";
-subscriptionTitle.style = "color: #fff;";
-subscriptionsWrapper.appendChild(subscriptionTitle);
 
 subscriptions.map((field) => {
-  const subscription = document.createElement("div");
-  subscription.classList.add("aside-link");
+  const subscription = htmlComponent([divComponent("aside-link")]);
 
-  const avatar = document.createElement("img");
-  avatar.style = "border-radius: 50%;";
-  avatar.src = field.avatar;
-  const channelName = document.createElement("span");
-  channelName.innerText = field.name;
+  const avatar = htmlComponent([
+    {
+      typeOfElement: "img",
+      attributes: [
+        {
+          attribute: "src",
+          value: field.avatar,
+        },
+        {
+          attribute: "style",
+          value: "border-radius: 50%",
+        },
+      ],
+    },
+  ]);
 
-  subscription.appendChild(avatar);
-  subscription.appendChild(channelName);
+  const channelName = htmlComponent([
+    {
+      typeOfElement: "span",
+      attributes: [
+        {
+          attribute: "innerText",
+          value: field.name,
+        },
+      ],
+    },
+  ]);
 
-  subscriptionsWrapper.appendChild(subscription);
+  appendElements([avatar, channelName], subscription[0]);
 
-  asideWrapper.appendChild(subscriptionsWrapper);
+  appendElements([subscription], asideWrapperContent[2]);
 });
