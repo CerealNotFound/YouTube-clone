@@ -1,4 +1,4 @@
-// import { formatDistanceToNow } from "../node_modules/date-fns/fp/formatDistance";
+import { formatDistanceToNow } from "../node_modules/date-fns/esm/formatDistanceToNow/index.d.ts";
 import { htmlComponent, appendElements } from "../scripts/htmlComponent.js";
 
 // console.log(formatDistanceToNow);
