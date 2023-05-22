@@ -1,5 +1,9 @@
-import { formatDistanceToNow } from "../node_modules/date-fns/esm/formatDistanceToNow/index.d.ts";
-import { htmlComponent, appendElements } from "../scripts/htmlComponent.js";
+// import { formatDistanceToNow } from "../node_modules/date-fns/esm/formatDistanceToNow/index.d.ts";
+import {
+  htmlComponent,
+  appendElements,
+  divComponent,
+} from "../scripts/htmlComponents.js";
 
 // console.log(formatDistanceToNow);
 
@@ -137,43 +141,71 @@ videos.map((video) => {
   // const videoTile = document.createElement("div");
   // videoTile.classList.add("video-tile");
 
-  const videoTile = htmlComponent("div", [
-    { attribute: "class", value: "video-tile" },
-  ]);
-  const videoThumbnailWrapper = htmlComponent("div", [
-    { attribute: "class", value: "video-thumbnail-wrapper" },
+  const videoTile = htmlComponent([divComponent("video-tile")]);
+
+  const videoThumbnailWrapper = htmlComponent([
+    divComponent("video-thumbnail-wrapper"),
   ]);
 
-  appendElements([videoThumbnailWrapper], videoTile);
+  const videoThumbnail = htmlComponent([
+    {
+      typeOfElement: "img",
+      attributes: [
+        {
+          attribute: "class",
+          value: "video-thumbnail",
+        },
+        {
+          attribute: "src",
+          value: video.thumbnail,
+        },
+      ],
+    },
+    divComponent("video-duration", video.duration),
+  ]);
+
+  const videoInfoWrapper = htmlComponent([divComponent("video-info-wrapper")]);
+
+  const creatorAvatar = htmlComponent([
+    {
+      typeOfElement: "img",
+      attributes: [
+        {
+          attribute: "class",
+          value: "creator-avatar",
+        },
+        {
+          attribute: "src",
+          value: video.avatar,
+        },
+      ],
+    },
+  ]);
+
+  const videoTitleWrapper = htmlComponent([
+    divComponent("video-title-wrapper"),
+  ]);
+
+  const videoTitleWrapperComponents = htmlComponent([
+    {
+      typeOfElement: "h4",
+      attributes: [
+        {
+          attribute: "innerText",
+          value: video.title,
+        },
+      ],
+    },
+    divComponent("channel-name-wrapper"),
+    divComponent("", video.creator),
+  ]);
+
+  appendElements([videoThumbnail], videoThumbnailWrapper[0]);
+  appendElements([creatorAvatar, videoTitleWrapper], videoInfoWrapper[0]);
+  appendElements([videoTitleWrapperComponents], videoTitleWrapper[0]);
+  appendElements([videoThumbnailWrapper, videoInfoWrapper], videoTile[0]);
   appendElements([videoTile], videoWrapper);
 
-  // videoTile.appendChild(videoThumbnailWrapper);
-  // videoWrapper.appendChild(videoTile);
-
-  // const videoThumbnailWrapper = document.createElement("div");
-  // videoThumbnailWrapper.classList.add("video-thumbnail-wrapper");
-  // const videoThumbnail = document.createElement("img");
-  // videoThumbnail.src = video.thumbnail;
-  // videoThumbnail.classList.add("video-thumbnail");
-  // const videoDuration = document.createElement("div");
-  // videoDuration.innerText = video.duration;
-  // videoDuration.classList.add("video-duration");
-  // videoThumbnailWrapper.appendChild(videoThumbnail);
-  // videoThumbnailWrapper.appendChild(videoDuration);
-
-  // const videoInfoWrapper = document.createElement("div");
-  // videoInfoWrapper.classList.add("video-info-wrapper");
-  // const videoCreatorAvatar = document.createElement("img");
-  // videoCreatorAvatar.classList.add("creator-avatar");
-  // videoCreatorAvatar.src = video.avatar;
-  // const videoTitleWrapper = document.createElement("div");
-  // videoTitleWrapper.classList.add("video-title-wrapper");
-  // const videoTitle = document.createElement("h4");
-  // videoTitle.innerText = video.title;
-  // const channelName = document.createElement("div");
-  // channelName.classList.add("channel-name-wrapper");
-  // const videoCreator = document.createElement("div");
-  // videoCreator.innerText = video.creator;
   // if (video.verified == true) {
   //   const creatorVerified = document.createElementNS(
   //     "http://www.w3.org/2000/svg",
@@ -213,10 +245,8 @@ videos.map((video) => {
   // viewsUploadWrapper.appendChild(separator);
   // viewsUploadWrapper.appendChild(videoDateUploaded);
 
-  // videoTitleWrapper.appendChild(videoTitle);
   // videoTitleWrapper.appendChild(channelName);
   // videoTitleWrapper.appendChild(viewsUploadWrapper);
-  // videoInfoWrapper.appendChild(videoCreatorAvatar);
   // videoInfoWrapper.appendChild(videoTitleWrapper);
   // document.querySelector(".video-tile").appendChild(videoThumbnailWrapper);
   // document.querySelector(".video-tile").appendChild(videoInfoWrapper);
