@@ -306,8 +306,8 @@ section {
 
 .video-duration {
   position: absolute;
-  top: 58%;
-  right: 11.5%;
+  top: 23.5vh;
+  right: 0.4vw;
   background-color: rgba(0, 0, 0, 0.8);
   color: #fff;
   font-size: 0.8rem;
