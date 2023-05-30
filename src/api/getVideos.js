@@ -5,5 +5,6 @@ export const getVideos = async (req, res) => {
   if (error) {
     res.status(404).send("failed to fetch data");
   }
-  res.status(200).send(JSON.stringify(data));
+  res.status(200).json(data);
+  // send() for text/html
 };

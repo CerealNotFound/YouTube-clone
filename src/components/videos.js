@@ -5,9 +5,9 @@ import {
   divComponent,
 } from "../scripts/htmlComponents.js";
 
-import { app } from "../../app.js";
-import { supabase } from "../middleware/middleware.js";
-import { getVideos } from "../api/getVideos.js";
+// import { app } from "../../app.js";
+// import { supabase } from "../middleware/middleware.js";
+// import { getVideos } from "../api/getVideos.js";
 
 // console.log(formatDistanceToNow);
 
@@ -136,9 +136,19 @@ import { getVideos } from "../api/getVideos.js";
 //     console.error(error);
 //   });
 
-const videos = app.get("/videos", getVideos);
+let videos = [];
 
-console.log(videos);
+//backend [] => JSON => String (network) => FE => String to JSON => [] 
+
+//GET
+fetch("http://127.0.0.1:3680/videos")
+  .then(response => response.json())
+  .then(res => {
+    videos = res;
+    console.log("res", res)
+  }
+  ).catch(err => console.log("err", err));
+
 
 const formatNumberOfViews = (views) => {
   let formattedViews;
