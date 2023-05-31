@@ -347,7 +347,7 @@ const videosHandler = () => {
         attributes: [
           {
             attribute: "innerText",
-            value: video.uploadedOn,
+            value: video.uploaded_on,
           },
         ],
       },
