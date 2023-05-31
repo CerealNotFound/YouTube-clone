@@ -4,9 +4,9 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
 // import { app, supabase } from "./src/middleware/middleware";
-import { getVideos } from "./src/api/getVideos.js";
-import { postVideos } from "./src/api/postVideos.js";
-import { deleteVideo } from "./src/api/deleteVideo.js";
+import { getVideos } from "./backend/api/getVideos.js";
+import { postVideos } from "./backend/api/postVideos.js";
+import { deleteVideo } from "./backend/api/deleteVideo.js";
 
 const app = express();
 
